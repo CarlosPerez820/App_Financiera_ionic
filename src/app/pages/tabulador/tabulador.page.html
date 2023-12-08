@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>TABULADOR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+   <!-- 
+  <ion-content padding>
+    <p>Latitud: {{lat}}</p>
+    <p>Longitud: {{lon}}</p>
+
+
+    <br>
+    <label (click)="locate()">Obtener ubicacion</label>
+    <ion-icon name="compass"></ion-icon>  -->
+
+
+<ion-card>
+  <ion-item fill="outline">
+    <ion-label position="stacked">MONTO SOLICITADO:</ion-label>
+    <ion-input type="number" [(ngModel)]="montoSolicitado" name="montoSolicitado"></ion-input>
+  </ion-item>
+
+  <ion-item fill="outline">
+    <ion-label position="floating">Tipo de Prestamo:</ion-label>
+    <ion-select label="Default label" placeholder="Tipo Prestamo" [(ngModel)]="tipoPrestamo" name="tipoPrestamo">
+      <ion-select-option value="Diario">Por Dia</ion-select-option>
+      <ion-select-option value="Semanal">Por Semana</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item fill="outline">
+    <ion-label position="stacked">PLAZO (DIAS):</ion-label>
+  <ion-grid [fixed]="true">
+    <ion-row>
+
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-input placeholder="0" type="number" [(ngModel)]="plazo" name="plazo"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col>
+        <ion-buttons><ion-button color="secondary" (click)="calcularMontos()">Calcular
+          <ion-icon name="calculator-outline"></ion-icon>
+        </ion-button></ion-buttons>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+  </ion-item>
+
+  <ion-item fill="outline">
+    <ion-label position="stacked">TOTAL A PAGAR:</ion-label>
+    <ion-input [(ngModel)]="total" name="total" readonly></ion-input>
+  </ion-item>
+
+  <ion-item fill="outline">
+    <ion-label position="stacked">PAGO DIARIO:</ion-label>
+    <ion-input [(ngModel)]="pagoDiario" name="pagoDiario" readonly></ion-input>
+  </ion-item>
+
+
+  <ion-button fill="outline"
+  color="primary" (click)="limpiar()">Limpiar</ion-button>
+</ion-card>
+
+</ion-content>

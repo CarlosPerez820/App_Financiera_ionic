@@ -1,0 +1,27 @@
+.centrado{
+    text-align: center; 
+}
+
+.fila-activa {
+  background-color: #7fdd82;  /* Puedes ajustar el color según tus preferencias */
+}
+.fila-inactiva {
+  background-color: #e8c14d;  /* Puedes ajustar el color según tus preferencias */
+}
+.fila-buro {
+  background-color: rgb(253, 125, 125);  /* Puedes ajustar el color según tus preferencias */
+}
+
+.timeline-dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background-color: #ff0000;
+  border-radius: 50%;
+  margin-right: 10px;
+  z-index: 1;
+}
+
+.buro{
+  color: #ff0000;
+}

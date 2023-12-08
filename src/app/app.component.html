@@ -1,0 +1,62 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" menuId="main-content" *ngIf="mostrarMenu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Bienvenido {{correoAsesor}}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+    
+        <ion-list>
+        <ion-menu-toggle>
+          <ion-item routerLink="/clientes"> 
+          <ion-label>Clientes</ion-label>
+          <ion-icon name="man-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>   
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/cobrar-cuentas"> 
+          <ion-label>Cobros del dia</ion-label>
+          <ion-icon name="cash-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/nueva-solicitud">
+            <ion-label>Nueva Solicitud</ion-label>
+            <ion-icon name="reader-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <!--
+        <ion-menu-toggle>
+          <ion-item routerLink="/solicitudes"> 
+          <ion-label>Solicitudes</ion-label>
+          <ion-icon name="albums-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+        -->
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/estadisticas">
+            <ion-label>Informe</ion-label>
+            <ion-icon name="podium-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/tabulador">
+            <ion-label>Tabulador</ion-label>
+            <ion-icon name="calculator-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+    
+        </ion-list>
+    
+      </ion-content>
+    </ion-menu>
+      <ion-router-outlet id="main-content"></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>

@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>HISTORIAL</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-card>
+  <ion-item>
+    <ion-thumbnail slot="start">
+    <ion-avatar>
+      <img  src="https://ionicframework.com/docs/img/demos/avatar.svg">
+    </ion-avatar>
+    </ion-thumbnail>
+    <ion-label>
+     <h1>{{_cliente}}  </h1> 
+    </ion-label>
+  </ion-item>
+</ion-card>
+<ion-content>
+
+<ion-content>
+<br>
+
+<ion-card>
+  <p></p>
+  <ion-card-title class="ion-text-center">PRESTAMOS -<ion-icon name="wallet-outline"></ion-icon>
+  </ion-card-title>
+  <p></p>
+</ion-card>
+
+    <ion-accordion-group>
+      <ion-accordion *ngFor="let prestamo of prestamosEspecificos"  (click)="buscarPagos(prestamo.folio)">
+        <ion-item slot="header" color="light">
+          <ion-label>
+            <h2>Prestamo: {{prestamo.folio}}</h2>
+            <p>Cantidad prestada ${{prestamo.cantidadPrestamo}}</p>
+            <p>Cantidad a pagar ${{prestamo.cantidadPagar}}</p>
+            <p>Plazo: {{prestamo.plazoPrestamo}} dias</p>
+            <p>Restante: ${{prestamo.totalRestante}}</p>
+          </ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-list [inset]="true">
+      
+             <!--       <ion-card>
+                        <ion-card-content>
+                        <ion-grid fixed>
+                        <ion-row>
+                          <ion-col size="auto">
+                            <ion-row></ion-row>
+                            </ion-col>
+                            <ion-col size="auto">
+                              <ion-row>Monto prestado: {{_montoPrestado}}</ion-row>
+                              <ion-row>Monto a pagar: {{_montoaPagar}}</ion-row>
+                              <ion-row>Plazo prestamo: {{_plazoPrestamos}} dias</ion-row>
+                            </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-card-content>
+                      </ion-card>                                       -->
+
+            <ion-item  *ngFor="let pago of listaPagos" class="centrado">
+              <div class="timeline-dot" [ngStyle]="{'background-color': pago.tipo == 'Mora' ? 'orange' : 'green'}"></div>
+              <ion-label>
+               
+                <h2>Tipo: {{pago.tipo}}</h2>
+                <h2>Fecha: {{pago.fechaPago}}</h2>
+                <p>Cantidad de: ${{pago.abono}}</p>
+                <p>Resta pagar: ${{pago.totalRestante}}</p>
+              </ion-label>
+            </ion-item>
+
+          </ion-list>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  <!--    <ion-list [inset]="true">
+          <ion-item  *ngFor="let pago of pagosEspecificos">
+            <ion-label>
+              <h2>Pago: {{pago.fechapago}}</h2>
+              <p>Se abono la cantidad de: ${{pago.abono}}</p>
+              <p>Resta pagar: ${{pago.totalrestante}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>               -->
+</ion-content>

@@ -1,0 +1,291 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>NUEVA SOLICITUD</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!--
+  <button (click)="compressFile()">Upload and compress Image</button>
+  <p>Antes de comprimir {{sizeAntes}} bytes</p>
+  <img [src]="imgResultBeforeCompression" *ngIf="imgResultBeforeCompression" />
+  <p>Despues de comprimir {{sizeDespues}} bytes</p>
+  <img [src]="imgResultAfterCompression" *ngIf="imgResultAfterCompression" />
+  <a [href]="imgResultAfterCompression" download="imagen_comprimida.jpg">
+    <button>Descargar Imagen</button>
+  </a> -->
+
+  <ion-card *ngIf="activo">
+    <h1>Enviar mensaje de confirmacion</h1>
+    <ion-button fill="outline"
+    color="primary" (click)="avisoSMS()">Enviar Mensaje</ion-button>
+  </ion-card>
+
+<!-- Solicitudes -->
+<ion-card *ngIf="!activo">
+  <ion-card-title class="ion-text-center">Solicitar Prestamo</ion-card-title>
+ <ion-card-header>
+  <ion-card-subtitle
+  class="ion-text-center">Para solicitar un prestamo debe llenar los siguientes datos:</ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+
+<ion-card>
+  <form [formGroup]="form" (ngSubmit)="ingresar()" *ngIf="!activo">
+  
+    <ion-item fill="outline">
+      <ion-label position="stacked">*Fecha:</ion-label>
+      <ion-input formControlName="fecha" readonly></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Monto Solicitado:</ion-label>
+      <ion-input type="number" placeholder="$5000" formControlName="montoSolicitado"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Tipo de Prestamo:</ion-label>
+      <ion-select label="Default label" placeholder="Tipo Prestamo" formControlName="tipoPrestamo">
+        <ion-select-option value="Diario">Por Dia</ion-select-option>
+        <ion-select-option value="Semanal">Por Semana</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="stacked">*Plazo (Dias):</ion-label>
+    <ion-grid [fixed]="true">
+      <ion-row>
+
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-input type="number" placeholder="30 dias" formControlName="plazo"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+        <ion-col>
+          <ion-buttons><ion-button color="secondary" (click)="calcularMontos()">Calcular
+            <ion-icon name="calculator-outline"></ion-icon>
+          </ion-button></ion-buttons>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Total A Pagar:</ion-label>
+      <ion-input type="number" placeholder="$5000" formControlName="totalPagar" readonly></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Pago Diario:</ion-label>
+      <ion-input type="number" placeholder="$350" formControlName="pagoDiario" readonly></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Nombre Del Solicitante:</ion-label>
+      <ion-input placeholder="Nombre completo" formControlName="nombreSolicitante"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Edad:</ion-label>
+      <ion-input type="number" placeholder="edad" formControlName="edad"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Direccion (Calle y número) :</ion-label>
+      <ion-input placeholder="calle principal, #23" formControlName="direccion"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Colonia:</ion-label>
+      <ion-input placeholder="Colonia Central" formControlName="colonia"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Señas De Domicilio:</ion-label>
+      <ion-input placeholder="Casa de dos pisos, color azul" formControlName="senasDomicilio"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Entre Calles:</ion-label>
+      <ion-input placeholder="Entre calle bosque y carretera" formControlName="entreCalles"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Ciudad:</ion-label>
+      <ion-input placeholder="Puebla" formControlName="ciudad"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Celular</ion-label>
+      <ion-input type="number" placeholder="2221113399" formControlName="celular"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Telefono fijo:</ion-label>
+      <ion-input type="number" placeholder="2221113399" formControlName="telefonoFijo"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Telefono Adicional:</ion-label>
+      <ion-input type="number" placeholder="2221113399" formControlName="telefonoAdicional"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Estado Civil:</ion-label>
+      <ion-input placeholder="Soltero(a), casado(a)" formControlName="estadoCivil"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Tiempo Casado(a):</ion-label>
+      <ion-input placeholder="5 años" formControlName="tiempoCasados"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Personas que dependen del Solicitante:</ion-label>
+      <ion-input placeholder="Hijo, Hermano, Padres" formControlName="dependientes"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Tipo Vivienda:</ion-label>
+      <ion-select label="Default label" placeholder="Tipo Vivienda" formControlName="tipoVivienda">
+        <ion-select-option value="Rentada">Rentada</ion-select-option>
+        <ion-select-option value="Prestada">Prestada</ion-select-option>
+        <ion-select-option value="Familiar">Familiar</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Tiempo en la vivienda:</ion-label>
+      <ion-input placeholder="5 años" formControlName="tiempoVivienda"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Pago de Renta:</ion-label>
+      <ion-input placeholder="el pago si la vivienda es rentada" formControlName="pagoRenta"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Tipo de Negocio:</ion-label>
+      <ion-input placeholder="Venta de productos" formControlName="tipoNegocio"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Tiempo del Negocio:</ion-label>
+      <ion-input placeholder="2 años" formControlName="tiempoNegocio"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Numero de Identificació:</ion-label>
+      <ion-input placeholder="Numero de identificacion del INE" formControlName="numeroINE"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*RFC:</ion-label>
+      <ion-input placeholder="RFC en caso de contar" formControlName="RFC"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Nombre del Conyugue:</ion-label>
+      <ion-input placeholder="Nombre del conyugue" formControlName="conyugue"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Trabajo del Conyugue:</ion-label>
+      <ion-input placeholder="Trabajo" formControlName="trabajoConyugue"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Domicilio conyugue:</ion-label>
+      <ion-input placeholder="Domicilio conyugue" formControlName="domicilioConyugue"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Antiguedad Conyugue</ion-label>
+      <ion-input placeholder="4 años" formControlName="antiguedadConyugue"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Ingreso del Solicitante:</ion-label>
+      <ion-input type="number" placeholder="$5000" formControlName="ingresoSolicitante"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Ingreso del Conyugue:</ion-label>
+      <ion-input type="number" placeholder="$6500" formControlName="ingresosConyugue"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Gastos Totales:</ion-label>
+      <ion-input type="number" placeholder="$6000" formControlName="gastos"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Creditos Actuales:</ion-label>
+      <ion-input type="number" placeholder="5" formControlName="creditosActuales" readonly></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="floating">*Motivo del credito:</ion-label>
+      <ion-input formControlName="motivos"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="stacked">Gestor:</ion-label>
+      <ion-input formControlName="gestor" readonly></ion-input>
+    </ion-item>
+  
+    <br>
+    <br>
+
+    <ion-button fill="outline"
+    color="primary" type="submit" [disabled]="form.invalid">ACEPTAR</ion-button>
+
+    <ion-button fill="outline"
+    color="primary" routerLink="/clientes">CANCELAR</ion-button>
+
+
+  </form>
+
+  </ion-card>
+    
+    <ion-card class="ion-text-center">
+
+    
+  </ion-card>
+
+
+  <ion-card *ngIf="activo">
+    <h1>Tu cliente fue registrado</h1>
+    <p>Ahora debes de subir tus documentos</p>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Foto de Comprobante de Domicilio</ion-label>
+      <ion-input type="file"  id="_fotoCliente" accept="image/jpeg, image/png" (change)="onFileSelected($event, 'comprobante')"></ion-input>
+
+      <!--
+      <ion-progress-bar type="indeterminate" [value]="valorProceso"></ion-progress-bar>
+      <ion-progress-bar type="determinate" [value]="valorProceso"></ion-progress-bar>
+      -->
+      
+      <br>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="stacked">Foto de INE de Frente</ion-label>
+      <ion-input type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event, 'frente')"></ion-input>
+      <br>
+    </ion-item>
+
+    <ion-item fill="outline">
+      <ion-label position="stacked">Foto de INE de Reverso</ion-label>
+      <ion-input type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event, 'reverso')"></ion-input>
+      <br>
+    </ion-item>
+  </ion-card>
+
+</ion-content>

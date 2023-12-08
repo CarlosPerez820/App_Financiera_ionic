@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>EXPEDIENTE</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+
+<ion-slides pager="true">
+
+  <ion-slide>
+    <ion-card>
+      <h1>INE Frente</h1>
+      <img src="{{urlServidor}}{{_imgFrente}}">
+    </ion-card>
+  </ion-slide>
+
+
+  <ion-slide>
+    <ion-card>
+      <h1>INE Reverso</h1>
+      <img src="{{urlServidor}}/{{_imgReverso}}">
+    </ion-card>
+  </ion-slide>
+
+  <ion-slide>
+    <ion-card>
+      <h1>Comprobante</h1>
+      <img src="{{urlServidor}}/{{_imgComprobante}}">
+    </ion-card>
+  </ion-slide>
+  
+</ion-slides>
+
+<ion-card class="centrado">
+  <ion-card-header>
+    <ion-card-title>{{clienteEspecifico.nombre}}</ion-card-title>
+    <ion-card-subtitle>Informacion</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <p>Numero de cliente: {{clienteEspecifico.numeroCliente}}</p>
+    <p>Edad: {{clienteEspecifico.edad}}</p>
+    <p>Direccion: {{clienteEspecifico.direccion}}</p>
+    <p>Colonia: {{clienteEspecifico.colonia}}</p>
+    <p>Ciudad: {{clienteEspecifico.ciudad}}</p>
+    <p>Señas del domicilio:: {{clienteEspecifico.senasDomicilio}}</p>
+    <p>Celular: {{clienteEspecifico.celular}}</p>
+    <p>Identificacion: {{clienteEspecifico.numeroIdentificacion}}</p>
+    <p>Conyugue: {{clienteEspecifico.nombreConyugue}}</p>
+    <p>Sucursal: {{clienteEspecifico.sucursal}}</p>
+
+  </ion-card-content>
+</ion-card>
+
+</ion-content>

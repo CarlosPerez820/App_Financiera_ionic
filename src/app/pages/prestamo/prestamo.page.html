@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>PRESTAMO</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+<!-- Formulario Prestamo -->
+
+<ion-card>
+  <ion-card-title class="ion-text-center">Solicitar Prestamo</ion-card-title>
+ <ion-card-header>
+  <ion-card-subtitle
+  class="ion-text-center">Para solicitar un prestamo debe llenar los siguientes datos:</ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+
+<ion-card>
+<ion-item fill="outline">
+  <ion-label position="stacked">FECHA DE PRESTAMO:</ion-label>
+  <ion-input [(ngModel)]="_fecha" name="_fecha"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">FOLIO DEL PRESTAMO:</ion-label>
+  <ion-input [(ngModel)]="folio" name="folio"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">NOMBRE DEL CLIENTE:</ion-label>
+  <ion-input [(ngModel)]="nombre" name="nombre" value="{{solicitudEspecifica.nombre}}"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">DIRECCION:</ion-label>
+  <ion-input [(ngModel)]="direccion" name="direccion" value="{{solicitudEspecifica.direccion}}"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">COLONIA:</ion-label>
+  <ion-input [(ngModel)]="colonia" name="colonia" value="{{solicitudEspecifica.colonia}}"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">TELEFONO DE CONTACTO:</ion-label>
+  <ion-input [(ngModel)]="telefonoContacto" name="telefonoContacto" value="{{solicitudEspecifica.telefonocel}}"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">DIRECCION DE COBRANZA:</ion-label>
+  <ion-input [(ngModel)]="cobranza" name="cobranza" value="{{solicitudEspecifica.cobranza}}"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">CANTIDAD A PRESTAMO:</ion-label>
+  <ion-input [(ngModel)]="cantidadPrestamo" name="cantidadPrestamo" value="{{solicitudEspecifica.montoAutorizado}}"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">PLAZO A PRESTAMO:</ion-label>
+  <ion-input [(ngModel)]="plazoPrestamo" name="plazoPrestamo" value="{{solicitudEspecifica.plazo}}" ></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">CANTIDAD TOTAL A PAGAR:</ion-label>
+  <ion-input [(ngModel)]="total" name="total" value="{{solicitudEspecifica.total}}"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">CANTIDAD A PAGAR DIARIO:</ion-label>
+  <ion-input [(ngModel)]="cantidadDiaria" name="cantidadDiaria" value="{{solicitudEspecifica.pagoDiario}}"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">FECHA DE PAGO:</ion-label>
+  <ion-input [(ngModel)]="fechaPago" name="fechaPago"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">GESTOR DE COBRANZA:</ion-label>
+  <ion-input [(ngModel)]="gestor" name="gestor" value="{{solicitudEspecifica.gestor}}"></ion-input>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">ESTATUS:</ion-label>
+  <ion-input value="{{solicitudEspecifica.estatus}}"></ion-input>
+</ion-item>
+
+
+<ion-item fill="outline">
+  <ion-label position="stacked">FOTO DEL CLIENTE CON DINERO EN MANO</ion-label>
+  <ion-input type="file" (change)="getFile($event)"></ion-input>
+  <ion-buttons><ion-button
+    color="secondary" (click)="sendFile()">Subir Archivo</ion-button></ion-buttons>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">FOTO DEL PAGARE</ion-label>
+  <ion-input type="file" (change)="getFile2($event)"></ion-input>
+  <ion-buttons><ion-button
+    color="secondary" (click)="sendFile()">Subir Archivo</ion-button></ion-buttons>
+</ion-item>
+
+<ion-item fill="outline">
+  <ion-label position="stacked">FOTO DE LA FACHADA DE LA CASA</ion-label>
+  <ion-input type="file" (change)="getFile3($event)"></ion-input>
+  <ion-buttons><ion-button
+    color="secondary" (click)="sendFile()">Subir Archivo</ion-button></ion-buttons>
+</ion-item>
+
+
+</ion-card>
+
+<ion-card class="ion-text-center">
+  <ion-button fill="outline"
+  color="primary" (click)="guardarPrestamo()" >ACEPTAR</ion-button>
+<ion-button fill="outline"
+color="primary" routerLink="/solicitudes">CANCELAR</ion-button>
+</ion-card>
+
+</ion-content>

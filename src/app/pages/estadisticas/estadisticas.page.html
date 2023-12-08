@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>INFORME</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Estadisticas CARTERA</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        
+        <div class="centrado">
+    
+          <h4>El total a cobrar en el dia es ${{totalCobrarDia}}</h4>
+          <h4>El total cobrado en el dia es ${{totalDiaCobradoHoy}}</h4>
+          <h4>Falto por cobrar: ${{totalCobrarDia-totalDiaCobradoHoy}}</h4>
+
+          <br>
+          <h4>Valor cartera ${{totalCartera}}</h4>
+      
+          <ion-button (click)='generaPDF()'>Generar PDF</ion-button>
+
+          <ion-button (click)='openFile()'>Abrir PDF</ion-button>
+         
+        </div>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  
+
+<div class="centrado">
+
+</div>
+
+      <!-- Refresher-->
+      <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
+        <ion-refresher-content>
+        </ion-refresher-content>
+      </ion-refresher>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-datetime presentation="date" (ionChange)="cambioFecha($event)"></ion-datetime>
+    </ion-card-header>
+    <ion-card-content>
+      
+
+
+      <div class="centrado">
+      <!--  <h1>El total de la cartera es ${{totalCartera}}</h1>
+        <h1>El total invertido es de ${{totalInvertido}}</h1>
+        <h1>El total a cobrar es de ${{totalCobrar}}</h1>
+       
+
+        <h1>El total a entregar es ${{totalFinal}}</h1>  -->
+    </div>
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col>Pagos</ion-col>
+        <ion-col>Solicitudes</ion-col>
+        <ion-col>Renovaciones</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>{{pagosDelDia}}</ion-col>
+        <ion-col>{{solicitudesDelDia}}</ion-col>
+        <ion-col>{{renovacionesDelDia}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>${{totalCobradoXdia}}</ion-col>
+        <ion-col>${{totalSolicitudesDia}}</ion-col>
+        <ion-col>${{totalRenovacionesDia}}</ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <!--  <p>Se cobraron {{pagosDelDia}} en el dia y un total de $ {{totalDia}}</p>
+    <p>Se realizaron {{renovacionesDelDia}} renovaciones en el dia  y un total de ${{totalRenovacionesDia}} </p>
+    <p>Se realizaron {{solicitudesDelDia}} solicitudes en el dia y se dio un total de ${{totalSolicitudesDia}}</p>
+      -->
+  </ion-card-content>
+  </ion-card>
+  
+
+
+<!--               Pagos o Corbos del Dia                  -->
+  
+
+<ion-accordion-group>
+  <ion-card>
+  <ion-accordion >
+    <ion-item slot="header" color="light">
+      <ion-label>Pagos Recolectados del {{fechaReporte}}
+        <ion-badge>{{pagosDelDia}}</ion-badge>
+      </ion-label>
+    </ion-item>
+      <div class="ion-padding" slot="content" *ngFor="let pago of pagosEspecificos">
+          
+            <ion-label>
+              <h2>Prestamo: {{pago.folioPrestamo}}</h2>
+              <h2>Fecha: {{pago.fecha}}</h2>
+              <p>Se abono la cantidad de: ${{pago.abono}}</p>
+              <p>Cliente: {{pago.nombreCliente}}</p>
+            </ion-label>
+          
+      </div>
+  </ion-accordion>
+</ion-card>
+</ion-accordion-group>
+
+<!--               Solicitudes del Dia                  -->
+
+
+<ion-accordion-group>
+  <ion-card>
+  <ion-accordion >
+    <ion-item slot="header" color="light">
+      <ion-label>Solicitudes de {{fechaReporte}}
+        <ion-badge>{{solicitudesDelDia}}</ion-badge>
+      </ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content" *ngFor="let solicitud of solicitudesEspecificas">
+
+          <ion-label>
+            <h2>Fecha: {{solicitud.fechaSolicitud}}</h2>
+            <p>Se Solicito: ${{solicitud.montoSolicitado}}</p>
+            <p>Cliente: {{solicitud.nombre}}</p>
+          </ion-label>
+
+    </div>
+  </ion-accordion>
+</ion-card>
+</ion-accordion-group>
+
+
+<!--               Renovaciones del Dia                  -->
+  
+<ion-accordion-group>
+  <ion-card>
+  <ion-accordion >
+    <ion-item slot="header" color="light">
+      <ion-label>Renovaciones de {{fechaReporte}}
+        <ion-badge>{{renovacionesDelDia}}</ion-badge>
+      </ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content" *ngFor="let renovacion of renovacionesEspecificas">
+        
+          <ion-label>
+              <h2>Fecha: {{renovacion.fechaSolicitud}}</h2>
+              <p>Se Solicito: ${{renovacion.montoSolicitado}}</p>
+              <p>Cliente: {{renovacion.nombre}}</p>
+          </ion-label>
+        
+    </div>
+  </ion-accordion>
+</ion-card>
+</ion-accordion-group>
+
+</ion-content>

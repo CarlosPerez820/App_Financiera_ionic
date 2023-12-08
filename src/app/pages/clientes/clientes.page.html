@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>CLIENTES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+
+
+<!-- Refresher-->
+
+<ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
+  <ion-refresher-content>
+  </ion-refresher-content>
+</ion-refresher>
+
+
+
+<ion-card>
+  <ion-searchbar placeholder="Buscar" animated="true" show-clear-button="focus" (ionChange)="barraBusqueda($event)"></ion-searchbar>
+</ion-card>
+
+
+<!-- Clientes -->
+
+<div class="centrado">
+  <h2>Tienes {{numClientes}} Clientes</h2>
+</div>
+
+
+
+<ion-list>
+  <ion-accordion-group>
+
+    <ion-accordion *ngFor="let cliente of resultado" [ngClass]="{
+      'fila-activa': cliente.prestamosActivos === true,
+      'fila-inactiva': cliente.prestamosActivos === false,
+      'fila-buro': cliente.clasificacion === 'C'
+      }">
+      <ion-item slot="header">
+        <!--
+        <ion-avatar slot="start">
+          <ion-img src="http://finapoyo-atlixco.com/{{cliente.urlfoto}}"></ion-img>
+        </ion-avatar>
+        -->
+         <ion-label>
+          <strong class="buro" *ngIf="cliente.clasificacion=='C'">En BURO DE CREDITO</strong>
+          <h2>{{cliente.nombre}}</h2>
+          <p>{{cliente.direccion}}, {{cliente.colonia}}</p>
+          <div class="timeline-dot" [ngStyle]="{'background-color': cliente.prestamosActivos== true ? 'green' : 'orange'}"></div>
+         </ion-label>
+      </ion-item>
+
+      <div class="ion-padding" slot="content" [routerLink]="['/expediente',cliente.numeroCliente]">
+        <ion-buttons><ion-button color="primary" slot="end" ></ion-button>
+        <ion-icon name="caret-forward-outline" slot="start"></ion-icon>
+        EXPEDIENTE </ion-buttons>
+      </div>
+
+      <div class="ion-padding" slot="content" [routerLink]="['/renovacion-cliente',cliente._id]">
+      <ion-buttons><ion-button color="primary" slot="end" ></ion-button>
+      <ion-icon name="caret-forward-outline" slot="start"></ion-icon>
+      RENOVACION </ion-buttons>
+      </div>
+
+      <div class="ion-padding" slot="content" [routerLink]="['/historial',cliente.nombre, cliente.urlfoto, cliente.numeroCliente]">
+      <ion-buttons><ion-button color="primary" slot="end" ></ion-button>
+      <ion-icon name="caret-forward-outline" slot="start"></ion-icon>
+      HISTORIAL </ion-buttons>
+      </div>
+
+
+    </ion-accordion>
+
+  </ion-accordion-group>
+
+</ion-list>
+
+
+
+
+</ion-content>

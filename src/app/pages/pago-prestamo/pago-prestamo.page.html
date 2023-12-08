@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>PAGOS</ion-title>
+    <ion-back-button slot="start"defaultHref="/"></ion-back-button >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card-content>
+      <ion-label>
+        <h2>Prestamo de: {{prestamoEspecifico.nombre}}</h2>
+        </ion-label>
+    <ion-grid fixed>
+    <ion-row>
+       <ion-col size="auto">
+         <ion-row><ion-avatar>
+          <img  src="https://ionicframework.com/docs/img/demos/avatar.svg"></ion-avatar></ion-row>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-row>Monto prestado: {{prestamoEspecifico.cantidadPrestamo}}</ion-row>
+          <ion-row>Monto a pagar: {{prestamoEspecifico.cantidadPagar}}</ion-row>
+          <ion-row>Plazo prestamo: {{prestamoEspecifico.plazoPrestamo}} dias/semanas</ion-row>
+          <ion-row>Telefono de contacto: {{prestamoEspecifico.telefono}}</ion-row>
+          <ion-row><a [routerLink]="['/expediente',prestamoEspecifico.numeroCliente]">Expediente</a></ion-row>          
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="auto">Monto restante
+              <ion-row>$ {{prestamoEspecifico.totalRestante}} </ion-row>
+          </ion-col>
+            <ion-col size="auto">Monto por pago
+              <ion-row>  $ {{prestamoEspecifico.pagoDiario}} </ion-row>
+            </ion-col>
+            <ion-col size="auto">Ultimo Pago
+              <ion-row>{{prestamoEspecifico.fechaPago}} </ion-row>
+            </ion-col>
+            <ion-col size="auto">Tipo 
+              <ion-row>{{prestamoEspecifico.tipoPrestamo}} </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <p></p>
+    <ion-card-title class="ion-text-center">REGISTRO DE PAGO</ion-card-title>
+
+
+  <!--  <ion-list>
+      <ion-radio-group>
+
+        <ion-item *ngFor="let prestamo of prestamosCliente">
+          <ion-label>{{prestamo.folio}}</ion-label>
+          <ion-radio slot="end"></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
+
+-->
+
+  </ion-card>
+
+
+<ion-card class="ion-text-center">
+  
+<ion-card>
+  <ion-item fill="outline">
+    <ion-label position="stacked">FECHA DE PAGO:</ion-label>
+    <ion-input [(ngModel)]="_fecha" name="_fecha" readonly></ion-input>
+  </ion-item>
+  <ion-item fill="outline">
+    <ion-label position="stacked">ABONO:</ion-label>
+    <ion-input type="Number" [(ngModel)]="_abono" name="_abono" value="0" ></ion-input>
+  </ion-item>
+  <ion-item fill="outline">
+    <ion-label position="stacked">CANTIDAD RESTANTE:</ion-label>
+    <ion-input [(ngModel)]="_restante" name="_restante" readonly></ion-input>
+  </ion-item>
+</ion-card>
+
+  <ion-button (click)="registroPago()"
+  fill="outline"
+  class="ion-wrap" >Pago</ion-button>
+
+  <!-- <ion-button (click)="agregarMora()"
+  fill="outline " >Mora</ion-button>
+-->
+
+  <!-- <ion-button (click)="registrarMovimiento()"
+  fill="outline " >Prueba</ion-button>
+ <ion-button (click)="pruebaSMS()"
+  fill="outline" href="{{urlWhats}}">SMS</ion-button>
+
+  <ion-button (click)="pruebaSMS()"
+  fill="outline " >Prueba</ion-button>   -->
+<p></p>
+</ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>© 2023</ion-title>
+  </ion-toolbar>
+</ion-footer>

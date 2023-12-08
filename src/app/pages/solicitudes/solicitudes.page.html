@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>SOLICITUDES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-card>
+    <ion-buttons>
+      <ion-button routerLink="/nueva-solicitud" color="primary">
+        <ion-icon name="add-circle-outline" slot="start">     
+        </ion-icon>NUEVA SOLICITUD</ion-button>
+    </ion-buttons>
+  </ion-card>  -->
+
+
+
+<!-- Refresher-->
+
+<ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
+  <ion-refresher-content>
+  </ion-refresher-content>
+</ion-refresher>
+
+<!-- Solicitudes -->
+
+
+  <ion-card>
+    <ion-searchbar placeholder="Buscar" animated="true" show-clear-button="focus" (ionChange)="barraBusqueda($event)"></ion-searchbar>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-title class="ion-text-center">Lista de solicitudes</ion-card-title>
+    </ion-card>
+  
+  <ion-card>
+  <ion-list>
+    
+    <ion-item slot="header" color="light" *ngFor="let solicititud of resultado" [routerLink]="['/prestamo',solicititud._id]">
+     <!--  <ion-avatar slot="start">
+        <img src="">
+      </ion-avatar> -->
+       <ion-label >
+        <h2>{{solicititud.nombre}} - {{solicititud.estatus}}</h2>
+        <p>{{solicititud.direccion}}, {{solicititud.colonia}}  -  ${{solicititud.montoSolicitado}}</p>
+        <!-- <p>{{solicititud._id}}</p> -->
+       </ion-label>
+       <br>
+    </ion-item>
+</ion-list>
+</ion-card>
+
+
+
+</ion-content>

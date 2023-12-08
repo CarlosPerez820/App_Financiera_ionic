@@ -1,0 +1,31 @@
+.pagina-centrada{
+  position: absolute;
+  left: 0;
+  right:0;
+  top: 0;
+  bottom:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contenido{
+  text-align: center;
+  color: white;
+}
+
+.fondo{
+  background-image: url('../../../assets/imagenes/movil.png'); /* Reemplaza 'ruta/de/tu/imagen.jpg' con la ruta de tu imagen */
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el div */
+  background-position: top; /* Centra la imagen en el div */
+  height: 400px; /* Ajusta la altura según tus necesidades */
+  width: 100%; /* Ajusta el ancho al 100% para ocupar todo el ancho del contenedor */
+  /* Puedes agregar más estilos según tus necesidades */
+}
+
+h1,h5{
+  background-color: rgba($color: #3e35b4, $alpha: 0.7)
+}
+
+.botonContenedor{
+  margin-top: 35px;
+}

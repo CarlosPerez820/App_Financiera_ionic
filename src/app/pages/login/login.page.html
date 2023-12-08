@@ -1,0 +1,44 @@
+
+<ion-content menuId="menuEspecifico" class="fondo">
+  <div class="contenido">
+  <br>
+  <ion-card>
+    <br>
+    <ion-card-title>INICIO DE SESION</ion-card-title>
+
+    <form (ngSubmit)="login()">
+
+    <ion-item>
+      <ion-label position="stacked">Usuario:</ion-label>
+      <ion-input [clearOnEdit]="true" placeholder="ejemplo@gmail.com" 
+      [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Contraseña:</ion-label>
+      <ion-input type="password" placeholder="**********" 
+      [(ngModel)]="password" name="password"></ion-input>
+    </ion-item>
+    <ion-card class="ion-text-center" color="transparent">
+      <ion-button fill="outline" color="primary"  (click)="login()">
+        ACEPTAR
+       </ion-button>
+    </ion-card>
+
+  </form>
+
+
+  </ion-card>
+</div>
+<div class="fondo">
+</div>
+</ion-content>
+
+
+
+
+
+<ion-footer>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-footer>
